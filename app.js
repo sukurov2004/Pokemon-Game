@@ -15,7 +15,6 @@ const images = {
   f: "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Charmander.png/250px-Charmander.png",
   w: "https://upload.wikimedia.org/wikipedia/en/5/59/Pok%C3%A9mon_Squirtle_art.png",
 };
-
 let point1 = 0;
 let point2 = 0;
 
@@ -24,59 +23,48 @@ function randomIndex(arr) {
   const randomEl = Math.floor(Math.random() * arr.length);
   return arr[randomEl];
 }
+function setWin() {
+  point1++;
+  playerPoint1.textContent = `POINT: ${point1}`;
+  playerStatus1.textContent = "STATUS: WIN";
+  playerStatus2.textContent = "STATUS: LOSE";
+  playerStatus1.style.color = "green";
+  playerStatus2.style.color = "red";
+}
 
-window.addEventListener("keydown", function (e) {
-  if (!arr.includes(e.key)) alert("e,w,f den basqa her secmeyin");
+function setLose() {
+  point2++;
+  playerPoint2.textContent = `POINT: ${point2}`;
+  playerStatus1.textContent = "STATUS: LOSE";
+  playerStatus2.textContent = "STATUS: WIN";
+  playerStatus1.style.color = "red";
+  playerStatus2.style.color = "green";
+}
+
+function setDraw() {
+  playerStatus1.textContent = "DRAW";
+  playerStatus2.textContent = "DRAW";
+  playerStatus1.style.color = "white";
+  playerStatus2.style.color = "white";
+}
+
+window.addEventListener("keydown", (e) => {
+  if (!arr.includes(e.key)) return alert("e,w,f den basqa her secmeyin");
+
   const userEl = e.key;
   const compEl = randomIndex(arr);
- 
   if (userEl == "e" && compEl == "f") {
-    //!qelebe zamani point 1 vahid artirma
-    point1++;
-    playerPoint1.innerHTML = `POINT: ${point1}`;
-    //!status ui da yazilmasi
-    playerStatus1.innerHTML = `STATUS: WIN`;
-    playerStatus2.innerHTML = `STATUS: LOSE`;
-    //!qelebe zamani status rengi
-    playerStatus1.style.color = "green";
-    playerStatus2.style.color = "red";
-   
+    setWin();
   } else if (userEl == "w" && compEl == "e") {
-    //!qelebe zamani point 1 vahid artirma
-    point1++;
-    playerPoint1.innerHTML = `POINT: ${point1}`;
-    //!status ui da yazilmasi
-    playerStatus1.innerHTML = `STATUS: WIN`;
-    playerStatus2.innerHTML = `STATUS: LOSE`;
-    //!qelebe zamani status rengi
-    playerStatus1.style.color = "green";
-    playerStatus2.style.color = "red";
+    setWin();
   } else if (userEl == "f" && compEl == "w") {
-    //!qelebe zamani point 1 vahid artirma
-    point1++;
-    playerPoint1.innerHTML = `POINT: ${point1}`;
-    //!status ui da yazilmasi
-    playerStatus1.innerHTML = `STATUS: WIN`;
-    playerStatus2.innerHTML = `STATUS: LOSE`;
-    //!qelebe zamani status rengi
-    playerStatus1.style.color = "green";
-    playerStatus2.style.color = "red";
+    setWin();
   } else if (userEl == compEl) {
-    //!berabere zamani olacaq prosesler
-    playerStatus1.innerHTML = `DRAF`;
-    playerStatus2.innerHTML = `DRAF`;
-    playerStatus1.style.color = "white";
-    playerStatus2.style.color = "white";
+    setDraw();
   } else {
-    point2++;
-    playerPoint2.textContent = `POINT: ${point2}`;
-    playerStatus1.innerHTML = `STATUS: LOSE`;
-    playerStatus2.innerHTML = `STATUS: WIN`;
-    playerStatus1.style.color = "red";
-    playerStatus2.style.color = "green";
+    setLose();
   }
 
-
-  playerImg1.src = images[userEl]
-  playerImg2.src = images[compEl]
+  playerImg1.src = images[userEl];
+  playerImg2.src = images[compEl];
 });
