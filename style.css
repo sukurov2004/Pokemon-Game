@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: aqua;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.player {
+  text-align: center;
+  color: #fff;
+}
+
+.player img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+#playerImg1,
+#playerImg2 {
+  width: 180px;
+  height: 180px;
+  object-fit: contain; /* şəkil əzilməsin */
+}
+
+.vs {
+  font-size: 40px;
+  color: white;
+}
+
+/* status colors */
+.status {
+  font-weight: bold;
+  color: aqua;
+}
+
